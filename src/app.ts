@@ -3,7 +3,7 @@ import "express-async-errors"
 import "dotenv/config";
 import { json } from "express";
 import "reflect-metadata";
-import { Jwt } from "jsonwebtoken";
+// import { Jwt } from "jsonwebtoken";
 export { app };
 
 
@@ -16,6 +16,6 @@ const app = express();
 app.use(json());
 
 
-jwt.sign(payload, secretKey);
+// jwt.sign(payload, secretKey);
 
 

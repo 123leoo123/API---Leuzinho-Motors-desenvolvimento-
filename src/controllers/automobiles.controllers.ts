@@ -1,6 +1,7 @@
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 import { AutomobileServices } from "../services/automobileServices";
 import { Request, Response } from "express";
+import { string } from "zod";
 
 
 @injectable()
@@ -16,7 +17,7 @@ export class AutomobilesControllers {
     }
 
     async findMany(req: Request, res: Response) {
-        const response = await this.automobilesServices.findMany(Number(req.params.id));
+        const response = await this.automobilesServices.findMany((req.params.name));
 
         return res.status(200).json(response);
     }

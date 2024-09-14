@@ -14,3 +14,15 @@ export const userRegisterBodySchema = userSchema.omit({ id: true });
 
 export type TUserRegisterBody = z.infer<typeof userRegisterBodySchema>;
 
+export const userLoginBodySchema = userRegisterBodySchema.omit({ name: true });
+
+export type TUserLoginBody = z.infer<typeof userLoginBodySchema>;
+
+export const userReturnSchema = userSchema.omit({ password: true });
+
+export type TUserReturn = z.infer<typeof userReturnSchema>;
+
+export type TUserLoginReturn = {
+    acessToken: string;
+    user: TUserReturn;
+}

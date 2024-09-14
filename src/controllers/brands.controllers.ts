@@ -15,7 +15,7 @@ export class BrandsControllers {
     }
 
     async findOne(req: Request, res: Response) {
-        const response = await this.brandsServices.findOne(Number(req.params.id));
+        const response = await this.brandsServices.findOne((req.params.name));
 
         return res.status(200).json(response);
     }

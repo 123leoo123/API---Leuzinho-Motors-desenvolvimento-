@@ -30,8 +30,3 @@ export class AutomobileServices {
 
         
 } 
-    
-
-    // async findOne(automobile: TAutomobile): TAutomobile {
-    //     return automobile;
-    // }
