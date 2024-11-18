@@ -5,12 +5,22 @@ export const userSchema = z.object({
     name: z.string().min(1),
     email: z.string().email(),
     password: z.string().min(8),
-    residence: z.any()
-})
+    residence: z.any().promise()
+});
 
-export type TUser = z.infer<typeof userSchema>;
+export const UserCreate = userSchema.omit({ id: true });
 
-export const userRegisterBodySchema = userSchema.omit({ id: true });
+export type UserCreateSchema = z.infer<typeof UserCreate>;
 
-export type TUserRegisterBody = z.infer<typeof userRegisterBodySchema>;
+export const userReturn = userSchema.omit({ password: true });
 
+export type UserReturnSchema = z.infer<typeof userReturn>;
+
+export const userLogin = userSchema.omit({ name: true, residence: true, id: true });
+
+export type UserLoginSchema = z.infer<typeof userLogin>;
+
+export type UserLoginReturn = {
+    acessToken: string;
+    user: UserReturnSchema;
+}

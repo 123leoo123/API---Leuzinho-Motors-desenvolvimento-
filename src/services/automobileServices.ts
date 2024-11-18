@@ -25,11 +25,10 @@ export class AutomobileServices {
 
     async delete(id: number): Promise<void> {
         await prisma.automobile.delete({where: {id}});
-    }
+    }   
 
-
-        
 } 
+
     
 
     // async findOne(automobile: TAutomobile): TAutomobile {

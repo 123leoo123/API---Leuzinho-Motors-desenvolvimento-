@@ -3,8 +3,9 @@ import "express-async-errors"
 import "dotenv/config";
 import { json } from "express";
 import "reflect-metadata";
-import { Jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 export { app };
+
 
 
 
