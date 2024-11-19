@@ -6,12 +6,14 @@ import { UserServices } from "../services/userServices";
 export class userControllers {
     constructor(@inject("UserServices") private userServices: UserServices) {}
 
+    // registrar o usuário
     async register(req: Request, res: Response): Promise<Response> {
         const response = await this.userServices.register(req.body);
 
         return res.status(201).json(response);
     }
 
+    // logar o usuário
     async login(req: Request, res: Response): Promise<Response> {
         const response = await this.userServices.login(req.body);
 

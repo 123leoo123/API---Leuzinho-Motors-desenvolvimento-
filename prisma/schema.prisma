@@ -20,6 +20,7 @@ model User {
   cpf String @unique
   password String
   residence String
+  automobile Automobile[]
 }
 
 model Automobile {
@@ -34,6 +35,8 @@ model Automobile {
   options String[]
   description String?
   brandId Int
+  userId Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   brand Brand @relation(fields: [brandId], references: [id], onDelete: Cascade)
 }
 

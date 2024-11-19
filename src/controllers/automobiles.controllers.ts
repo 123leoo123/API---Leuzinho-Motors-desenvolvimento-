@@ -1,4 +1,4 @@
-import { injectable } from "tsyringe";
+import { injectable, inject } from "tsyringe";
 import { AutomobileServices } from "../services/automobileServices";
 import { Request, Response } from "express";
 

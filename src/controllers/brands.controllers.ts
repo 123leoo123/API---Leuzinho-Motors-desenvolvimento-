@@ -1,7 +1,7 @@
-import { injectable } from "tsyringe";
+import { injectable, inject } from "tsyringe";
 import { BrandServices } from "../services/brandServices";
 import { Request, Response } from "express";
-import { string } from "zod";
+
 
 @injectable()
 export class BrandsControllers {
