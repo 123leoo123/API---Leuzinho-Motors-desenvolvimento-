@@ -17,14 +17,13 @@ model User {
   id Int @id @default(autoincrement())
   email String @unique
   name String
-  cpf Int @unique
+  cpf String @unique
   password String
   residence String
 }
 
 model Automobile {
   id Int @id @default(autoincrement())
-  brand String
   model String
   year Int
   plate String
@@ -34,6 +33,8 @@ model Automobile {
   price Float
   options String[]
   description String?
+  brandId Int
+  brand Brand @relation(fields: [brandId], references: [id], onDelete: Cascade)
 }
 
 model Brand {
@@ -42,11 +43,13 @@ model Brand {
   description String?
   models String[]
   modelsCount Int
-  automobile Automobile @relation(fields: [models], references: [id], onDelete: Cascade)
+  automobile Automobile[] 
 }
 
-type Photo {
-  // id Int 
+model Photo {
+  id Int @id @default(autoincrement())
+  automobileId Int
   height Int
   width Int
+  automobile Automobile @relation(fields: [automobileId], references: [id], onDelete: Cascade)
 }

@@ -11,7 +11,7 @@ export class AutomobilesControllers {
     async create(req: Request, res: Response) {
         const id = res.locals.decode?.id;
 
-        const response = await this.automobilesServices.create(req.body, automobileId);
+        const response = await this.automobilesServices.create(req.body, id);
 
         return res.status(201).json(response);
     }

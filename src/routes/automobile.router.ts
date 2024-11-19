@@ -17,7 +17,7 @@ automobileRouter.use(validateToken.execute);
 
 automobileRouter.post("/", validateToken.execute, isBrandExist.execute, validateBody.execute(automobileRegisterBodySchema), isDuplicateAutomobile.execute, (req, res) => automobilesControllers.create(req, res));
 automobileRouter.get("/", (req, res) => automobilesControllers.findMany(req, res));
-automobileRouter.get("/:id", isAutomobileOwner.execute, (req, res) => automobilesControllers.findMany(req, res));
+automobileRouter.get("/:id", validateToken.execute, isAutomobileOwner.execute, (req, res) => automobilesControllers.findMany(req, res));
 // automobileRouter.get("/user/:id",  (req, res) => automobilesControllers.findMany(req, res));
-automobileRouter.patch("/:id", isAutomobileExist.execute, isAutomobileOwner.execute, validateBody.execute(automobileUpdateSchema), (req, res) => automobilesControllers.update(req, res));
-automobileRouter.delete("/:id", isAutomobileExist.execute, isAutomobileOwner.execute, (req, res) => automobilesControllers.delete(req, res));
+automobileRouter.patch("/:id", validateToken.execute, isAutomobileExist.execute, isAutomobileOwner.execute, validateBody.execute(automobileUpdateSchema), (req, res) => automobilesControllers.update(req, res));
+automobileRouter.delete("/:id", validateToken.execute, isAutomobileExist.execute, isAutomobileOwner.execute, (req, res) => automobilesControllers.delete(req, res));
