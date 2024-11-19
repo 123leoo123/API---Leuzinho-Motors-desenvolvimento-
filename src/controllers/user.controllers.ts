@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { inject, injectable } from "tsyringe";
+import { UserServices } from "../services/userServices";
 
 @injectable()
 export class userControllers {
@@ -25,3 +26,9 @@ export class userControllers {
         return res.status(200).json(response);
     }
 }
+
+// 2 de dezembro as 14h 
+
+// chegar 30 min antes
+
+// prédio 3 unimed cristovão colombo 545

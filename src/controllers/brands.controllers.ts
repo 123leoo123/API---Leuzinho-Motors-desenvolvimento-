@@ -31,4 +31,10 @@ export class BrandsControllers {
 
         return res.status(204).json('Brand deleted');
     }
+
+    async findAll(req: Request, res: Response) {
+        const response = await this.brandsServices.findAll();
+
+        return res.status(200).json(response);
+    }
 }

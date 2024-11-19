@@ -19,3 +19,4 @@ export type TBrandSearch = z.infer<typeof brandSearchSchema>;
 export const brandUpdateSchema = brandSchema.omit({ id: true }).optional();
 
 export type TBrandUpdate = z.infer<typeof brandUpdateSchema>;
+

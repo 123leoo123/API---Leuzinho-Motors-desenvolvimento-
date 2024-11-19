@@ -15,7 +15,11 @@ export class AutomobileServices {
             const getAllAutomobiles = await prisma.automobile.findMany({ where: { name: nameAutomobile }});
             
             return getAllAutomobiles;
-        } 
+        }
+        
+    // async findAll(userId: string): Promise<TAutomobileRegisterBody[]> {
+        // buscar todos anúncios do usuário
+    // }
         
     async update(id: number, body: TAutomobileUpdate): Promise<TAutomobileUpdate> {
         const data = await prisma.automobile.update({where: {id}, data: body});

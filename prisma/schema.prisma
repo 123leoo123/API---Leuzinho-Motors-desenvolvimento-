@@ -17,6 +17,7 @@ model User {
   id Int @id @default(autoincrement())
   email String @unique
   name String
+  cpf Int @unique
   password String
   residence String
 }
@@ -26,13 +27,13 @@ model Automobile {
   brand String
   model String
   year Int
+  plate String
+  mileage Int
+  photos Photo[]
   color String
   price Float
   options String[]
   description String?
-  buyerId Int?
-  sellerId Int?
-  user User @relation(fields: [buyerId], references: [id])
 }
 
 model Brand {
@@ -42,4 +43,10 @@ model Brand {
   models String[]
   modelsCount Int
   automobile Automobile @relation(fields: [models], references: [id], onDelete: Cascade)
+}
+
+type Photo {
+  // id Int 
+  height Int
+  width Int
 }
