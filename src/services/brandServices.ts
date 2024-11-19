@@ -3,14 +3,16 @@ import { TAutomobileSearch } from "../schemas/automobile.schema";
 import { TBrandRegisterBody, TBrandSearch, TBrandUpdate } from "../schemas/brand.schema";
 
 export class BrandServices {
+    // função para administrador da API, para criar uma marca de automóvel
     async create(brandId: number, body: TBrandRegisterBody): Promise<TBrandRegisterBody> {
         const data = await prisma.brand.create({data: {...body, brandId}}) 
         
         return data;
     }
 
-    async findAll(brandName: string): Promise<TAutomobileSearch[]>{
-           // const getAllAutomobiles = brandDataBase.filter(brand => brand.name.toLowerCase().includes(name.toLowerCase()))
+    // função para usuários para buscar os automóveis pela marca
+    async findOne(brandName: string): Promise<TAutomobileSearch[]>{
+           // const getAllAutomobiles = prisma.filter(brand => brand.name.toLowerCase().includes(name.toLowerCase()))
             
             const getBrand = await prisma.brand.findMany({ where: { name: brandName }});
             
@@ -18,21 +20,26 @@ export class BrandServices {
 
             // return getAllAutomobiles;
         } 
+
+    async findAll(): Promise<TBrandSearch> {
+        const data = await prisma.brand.findMany();
         
+        return data;
+    }
+     
+    // função para administrador da API, para atualizar a marca de automóvel
     async update(id: number, body: TBrandUpdate): Promise<TBrandUpdate> {
         const data = await prisma.brand.update({where: {id}, data: body});
         
         return data;
     }
 
+    // função para administrador da API, para deletar a marca de automóvel
     async delete(id: number): Promise<void> {
         await prisma.brand.delete({where: {id}});
     } 
 
-    // async findAll(): Promise<TAutomobileSearch[]>{
-
-    // }
+    
 }
 
 
-// const getBrand = prisma.filter(Brands.name => brand.name.toLowerCase().includes(name.toLowerCase()))

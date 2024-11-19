@@ -18,6 +18,7 @@ export class userControllers {
         return res.status(200).json(response);
     }
 
+    // responder o id do usuário logado através de seu res locals
     async getUser(req: Request, res: Response): Promise<Response> {
         const id = res.locals.id;
 
@@ -27,8 +28,3 @@ export class userControllers {
     }
 }
 
-// 2 de dezembro as 14h 
-
-// chegar 30 min antes
-
-// prédio 3 unimed cristovão colombo 545
