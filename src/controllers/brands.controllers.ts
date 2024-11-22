@@ -11,7 +11,7 @@ export class BrandsControllers {
     async create(req: Request, res: Response) {
         const id = res.locals.decode?.id;
 
-        const response = await this.brandsServices.create(req.body, id);
+        const response = await this.brandsServices.create(req.body);
 
         return res.status(201).json(response);
     }

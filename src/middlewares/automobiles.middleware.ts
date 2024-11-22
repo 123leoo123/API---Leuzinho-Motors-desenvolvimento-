@@ -30,7 +30,7 @@ export class isAutomobileExist {
     static async execute(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
 
-        const automobileExist = await prisma.automobile.findFirst({ where: { id }});
+        const automobileExist = await prisma.automobile.findFirst({ where: { id: +id }});
         
         res.locals.automobile = automobileExist;
         

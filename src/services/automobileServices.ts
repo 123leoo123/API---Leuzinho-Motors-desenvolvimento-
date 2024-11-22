@@ -1,18 +1,20 @@
+import { injectable } from "tsyringe";
 import { prisma } from "../database/prisma";
 import { TAutomobile, TAutomobileRegisterBody, TAutomobileSearch, TAutomobileUpdate } from "../schemas/automobile.schema";
 
+@injectable()
 export class AutomobileServices {
 
-    async create(automobileId: number, body: TAutomobileRegisterBody): Promise<TAutomobile> {
-        const data = await prisma.automobile.create({data: {...body, automobileId}}) 
+    async create(brandId: string, body: TAutomobileRegisterBody): Promise<TAutomobile> {
+        const data = await prisma.automobile.create({data: {...body, brandId: +brandId }}) 
         
         return data;
     }
 
-    async findMany(nameAutomobile: string): Promise<TAutomobileSearch[]>{
+    async findMany(brandAuto: string): Promise<TAutomobileSearch[]>{
            // const getAllAutomobiles = automobileDataBase.filter(automobile => automobile.name.toLowerCase().includes(name.toLowerCase()))
             
-            const getAllAutomobiles = await prisma.automobile.findMany({ where: { name: nameAutomobile }});
+            const getAllAutomobiles = await prisma.automobile.findMany({ where: { brand: brandAuto }});
             
             return getAllAutomobiles;
         }

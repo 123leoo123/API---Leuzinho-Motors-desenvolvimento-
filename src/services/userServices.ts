@@ -31,7 +31,7 @@ export class UserServices {
         const compare = await bcrypt.compare(body.password, user.password);
 
         if (!compare) {
-            throw new appError(401, "Enauk and password doesn't match");
+            throw new appError(401, "Email and password doesn't match");
         }
 
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expireIn: "2h" });
