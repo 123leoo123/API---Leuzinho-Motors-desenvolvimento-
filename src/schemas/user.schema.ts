@@ -6,7 +6,6 @@ export const userSchema = z.object({
     email: z.string().email(),
     cpf: z.string().length(11),
     password: z.string().min(8),
-    // residence: z.any().promise()
 });
 
 export const UserCreate = userSchema.omit({ id: true });
@@ -24,6 +23,6 @@ export const userLogin = userSchema.omit({ name: true, id: true, cpf: true });
 export type UserLoginSchema = z.infer<typeof userLogin>;
 
 export type UserLoginReturn = {
-    acessToken: string;
+    accessToken: string;
     user: UserReturnSchema;
 }

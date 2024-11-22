@@ -19,8 +19,8 @@ model User {
   name String
   cpf String @unique
   password String
-  residence String
   automobile Automobile[]
+  address Address?
 }
 
 model Automobile {
@@ -55,4 +55,13 @@ model Photo {
   height Int
   width Int
   automobile Automobile @relation(fields: [automobileId], references: [id], onDelete: Cascade)
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  city String
+  neighborhood String
+  cep Int
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

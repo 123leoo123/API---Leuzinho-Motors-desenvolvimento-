@@ -3,18 +3,18 @@ import { prisma } from "../database/prisma";
 import { TAutomobile, TAutomobileRegisterBody, TAutomobileSearch, TAutomobileUpdate } from "../schemas/automobile.schema";
 
 @injectable()
-export class AutomobileServices {
+export class AutomobilesServices {
 
-    async create(brandId: string, body: TAutomobileRegisterBody): Promise<TAutomobile> {
-        const data = await prisma.automobile.create({data: {...body, brandId: +brandId }}) 
-        
+    async create(userId: string,  body: TAutomobileRegisterBody): Promise<TAutomobile> {
+        const data = await prisma.automobile.create({data: {...body, userId: +userId }}) 
+        // const data = await prisma.automobile.create({data: {...body, brandId: +brandId, userId: +userId }, include: {brand: true}})
         return data;
     }
 
     async findMany(brandAuto: string): Promise<TAutomobileSearch[]>{
            // const getAllAutomobiles = automobileDataBase.filter(automobile => automobile.name.toLowerCase().includes(name.toLowerCase()))
             
-            const getAllAutomobiles = await prisma.automobile.findMany({ where: { brand: brandAuto }});
+            const getAllAutomobiles = await prisma.automobile.findMany({ where: { brand: {name: brandAuto} }, include: {brand: true}});
             
             return getAllAutomobiles;
         }
@@ -34,9 +34,6 @@ export class AutomobileServices {
     }   
 
 } 
-
-    
-
     // async findOne(automobile: TAutomobile): TAutomobile {
     //     return automobile;
     // }

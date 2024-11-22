@@ -1,11 +1,11 @@
 import { injectable, inject } from "tsyringe";
-import { BrandServices } from "../services/brandServices";
+import { BrandsServices } from "../services/brandServices";
 import { Request, Response } from "express";
 
 
 @injectable()
 export class BrandsControllers {
-    constructor(@inject("BrandsServices") private brandsServices: BrandServices) {}
+    constructor(@inject("BrandsServices") private brandsServices: BrandsServices) {}
 
     // função para administrador da API, para criar uma marca de automóvel
     async create(req: Request, res: Response) {

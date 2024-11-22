@@ -5,7 +5,7 @@ import { TBrandRegisterBody, TBrandSearch, TBrandUpdate } from "../schemas/brand
 import { Brand } from "@prisma/client";
 
 @injectable()
-export class BrandServices {
+export class BrandsServices {
     // função para administrador da API, para criar uma marca de automóvel
     async create( brand: Brand): Promise<Brand> {
         
@@ -42,8 +42,6 @@ export class BrandServices {
     async delete(id: number): Promise<void> {
         await prisma.brand.delete({where: {id}});
     } 
-
-    
 }
 
 

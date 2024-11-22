@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const brandSchema = z.object({
     id: z.number().positive(),
     name: z.string().min(1),
-    description: z.string().optional(),
+    description: z.string().nullish(),
     models: z.array(z.string()),
     modelsCount: z.number().int().positive(),
 })

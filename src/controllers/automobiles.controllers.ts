@@ -1,17 +1,17 @@
 import { injectable, inject } from "tsyringe";
-import { AutomobileServices } from "../services/automobileServices";
+import { AutomobilesServices } from "../services/automobileServices";
 import { Request, Response } from "express";
 
 
 @injectable()
 export class AutomobilesControllers {
-    constructor(@inject("AutomobilesServices") private automobilesServices: AutomobileServices) {}
+    constructor(@inject("AutomobilesServices") private automobilesServices: AutomobilesServices) {}
 
     // função para usuário criar seu anúncio de automóvel
     async create(req: Request, res: Response) {
         const id = res.locals.decode?.id;
 
-        const response = await this.automobilesServices.create(req.body, id);
+        const response = await this.automobilesServices.create(id, req.body);
 
         return res.status(201).json(response);
     }

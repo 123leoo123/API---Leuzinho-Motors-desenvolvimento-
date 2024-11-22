@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { AutomobileServices } from "../services/automobileServices";
+import { AutomobilesServices } from "../services/automobileServices";
 import { Router } from "express";
 import { validateToken } from "../middlewares/validateToken.middleware";
 import { isBrandExist } from "../middlewares/brand.middleware";
@@ -8,7 +8,7 @@ import { automobileRegisterBodySchema, automobileUpdateSchema } from "../schemas
 import { isAutomobileExist, isAutomobileOwner, isDuplicateAutomobile } from "../middlewares/automobiles.middleware";
 import { AutomobilesControllers } from "../controllers/automobiles.controllers";
 
-container.registerSingleton("AutomobileService", AutomobileServices);
+container.registerSingleton("AutomobilesServices", AutomobilesServices);
 const automobilesControllers = container.resolve(AutomobilesControllers);
 
 export const automobileRouter = Router();

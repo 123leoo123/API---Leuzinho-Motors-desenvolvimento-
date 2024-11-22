@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { BrandServices } from "../services/brandServices";
+import { BrandsServices } from "../services/brandServices";
 import { Router } from "express";
 import { validateBody } from "../middlewares/validateBody.middleware";
 import { validateToken } from "../middlewares/validateToken.middleware";
@@ -7,7 +7,7 @@ import { brandRegisterBodySchema } from "../schemas/brand.schema";
 import { isBrandExist, isDuplicateBrandExist } from "../middlewares/brand.middleware";
 import { BrandsControllers } from "../controllers/brands.controllers";
 
-container.registerSingleton("BrandServices", BrandServices);
+container.registerSingleton("BrandsServices", BrandsServices);
 const brandControllers = container.resolve(BrandsControllers);
 
 export const brandRouter = Router();
