@@ -1,21 +1,27 @@
+import { injectable } from "tsyringe";
 import { prisma } from "../database/prisma";
 import { TAutomobile, TAutomobileRegisterBody, TAutomobileSearch, TAutomobileUpdate } from "../schemas/automobile.schema";
 
-export class AutomobileServices {
+@injectable()
+export class AutomobilesServices {
 
-    async create(automobileId: number, body: TAutomobileRegisterBody): Promise<TAutomobile> {
-        const data = await prisma.automobile.create({data: {...body, automobileId}}) 
-        
+    async create(userId: string,  body: TAutomobileRegisterBody): Promise<TAutomobile> {
+        const data = await prisma.automobile.create({data: {...body, userId: +userId }}) 
+        // const data = await prisma.automobile.create({data: {...body, brandId: +brandId, userId: +userId }, include: {brand: true}})
         return data;
     }
 
-    async findMany(nameAutomobile: string): Promise<TAutomobileSearch[]>{
+    async findMany(brandAuto: string): Promise<TAutomobileSearch[]>{
            // const getAllAutomobiles = automobileDataBase.filter(automobile => automobile.name.toLowerCase().includes(name.toLowerCase()))
             
-            const getAllAutomobiles = await prisma.automobile.findMany({ where: { name: nameAutomobile }});
+            const getAllAutomobiles = await prisma.automobile.findMany({ where: { brand: {name: brandAuto} }, include: {brand: true}});
             
             return getAllAutomobiles;
-        } 
+        }
+        
+    // async findAll(userId: string): Promise<TAutomobileRegisterBody[]> {
+        // buscar todos anúncios do usuário
+    // }
         
     async update(id: number, body: TAutomobileUpdate): Promise<TAutomobileUpdate> {
         const data = await prisma.automobile.update({where: {id}, data: body});
@@ -25,8 +31,12 @@ export class AutomobileServices {
 
     async delete(id: number): Promise<void> {
         await prisma.automobile.delete({where: {id}});
-    }
+    }   
 
-
-        
 } 
+<<<<<<< HEAD
+=======
+    // async findOne(automobile: TAutomobile): TAutomobile {
+    //     return automobile;
+    // }
+>>>>>>> 440733800a8a077122feda5bbbe4e5979638dea6

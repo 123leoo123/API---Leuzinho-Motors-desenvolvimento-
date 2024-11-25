@@ -16,23 +16,28 @@ datasource db {
 model User {
   id Int @id @default(autoincrement())
   email String @unique
-  name String?
+  name String
+  cpf String @unique
   password String
-  residence String?
+  automobile Automobile[]
+  address Address?
 }
 
 model Automobile {
   id Int @id @default(autoincrement())
-  brand String
   model String
   year Int
+  plate String
+  mileage Int
+  photos Photo[]
   color String
   price Float
   options String[]
   description String?
-  buyerId Int?
-  sellerId Int?
-  user User @relation(fields: [buyerId], references: [id])
+  brandId Int
+  userId Int
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  brand Brand @relation(fields: [brandId], references: [id], onDelete: Cascade)
 }
 
 model Brand {
@@ -41,5 +46,22 @@ model Brand {
   description String?
   models String[]
   modelsCount Int
-  automobile Automobile @relation(fields: [models], references: [id], onDelete: Cascade)
+  automobile Automobile[] 
+}
+
+model Photo {
+  id Int @id @default(autoincrement())
+  automobileId Int
+  height Int
+  width Int
+  automobile Automobile @relation(fields: [automobileId], references: [id], onDelete: Cascade)
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  city String
+  neighborhood String
+  cep Int
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
